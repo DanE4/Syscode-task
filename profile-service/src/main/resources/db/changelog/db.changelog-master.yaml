@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: DanE
+      changes:
+        - createTable:
+            tableName: students
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    unique: true
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: DanE
+      changes:
+        - insert:
+            tableName: students
+            columns:
+              - column:
+                  name: id
+                  value: 'a1f45a72-4b62-4fb4-b74a-65d7a89c6c4e'
+              - column:
+                  name: name
+                  value: 'John Doe'
+              - column:
+                  name: email
+                  value: 'john.doe@example.com'
+
+  - changeSet:
+      id: 3
+      author: DanE
+      changes:
+        - insert:
+            tableName: students
+            columns:
+              - column:
+                  name: id
+                  value: 'b1e3c3a1-854d-4e5a-a071-8f93272c831f'
+              - column:
+                  name: name
+                  value: 'Jane Smith'
+              - column:
+                  name: email
+                  value: 'jane.smith@example.com'

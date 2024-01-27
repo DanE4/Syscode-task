@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AddressService {
+public class AddressServiceApp {
     public static void main(String[] args) {
-        SpringApplication.run(AddressService.class, args);
+        SpringApplication.run(AddressServiceApp.class, args);
     }
 }

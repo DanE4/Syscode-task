@@ -3,10 +3,7 @@ package org.daniel.task.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -21,11 +18,13 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @NonNull
     @Column(nullable = false)
     private String name;
 
+    @NonNull
     @Email(message = "Invalid email")
-    @Column(unique = true, nullable = false)
+    @Column(unique = false, nullable = false)
     private String email;
 }
 

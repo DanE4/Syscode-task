@@ -1,6 +1,7 @@
 package org.daniel.task.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.daniel.task.dto.StudentDTO;
@@ -21,7 +22,23 @@ public class ProfileController {
     private final ProfileServiceImpl profileService;
 
 
-    @Operation(summary = "Get all students", description = "Fetch all students", tags = {"Profile"})
+    @Operation(summary = "Get all students", description = "Fetch all students", tags = {"Profile"},
+            responses = {
+                    @ApiResponse(
+                            description = "Success",
+                            responseCode = "200",
+                            content = @io.swagger.v3.oas.annotations.media.Content(
+                                    mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation =
+                                            Response.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            description = "Internal Server Error",
+                            responseCode = "500"
+                    )
+            }
+    )
     @GetMapping("/")
     public ResponseEntity<Response> getAllStudents() {
         try {
@@ -37,7 +54,27 @@ public class ProfileController {
         }
     }
 
-    @Operation(summary = "Create a student", description = "Create a student", tags = {"Profile"})
+    @Operation(summary = "Create a student", description = "Create a student", tags = {"Profile"},
+            responses = {
+                    @ApiResponse(
+                            description = "Success",
+                            responseCode = "201",
+                            content = @io.swagger.v3.oas.annotations.media.Content(
+                                    mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation =
+                                            Response.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            description = "Conflict",
+                            responseCode = "409"
+                    ),
+                    @ApiResponse(
+                            description = "Internal Server Error",
+                            responseCode = "500"
+                    )
+            }
+    )
     @PostMapping("/")
     public ResponseEntity<Response> createStudent(@RequestBody @Valid StudentDTO studentDTO) {
         try {
@@ -58,7 +95,31 @@ public class ProfileController {
         }
     }
 
-    @Operation(summary = "Update a student", description = "Update a student", tags = {"Profile"})
+    @Operation(summary = "Update a student", description = "Update a student", tags = {"Profile"},
+            responses = {
+                    @ApiResponse(
+                            description = "Success",
+                            responseCode = "200",
+                            content = @io.swagger.v3.oas.annotations.media.Content(
+                                    mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation =
+                                            Response.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            description = "Not Found",
+                            responseCode = "404"
+                    ),
+                    @ApiResponse(
+                            description = "Conflict",
+                            responseCode = "409"
+                    ),
+                    @ApiResponse(
+                            description = "Internal Server Error",
+                            responseCode = "500"
+                    )
+            }
+    )
     @PatchMapping("/{id}")
     public ResponseEntity<Response> updateStudent(@PathVariable UUID id, @RequestBody @Valid StudentDTO studentDTO) {
         try {
@@ -84,7 +145,27 @@ public class ProfileController {
         }
     }
 
-    @Operation(summary = "Delete a student", description = "Delete a student", tags = {"Profile"})
+    @Operation(summary = "Delete a student", description = "Delete a student", tags = {"Profile"},
+            responses = {
+                    @ApiResponse(
+                            description = "Success",
+                            responseCode = "200",
+                            content = @io.swagger.v3.oas.annotations.media.Content(
+                                    mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation =
+                                            Response.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            description = "Not Found",
+                            responseCode = "404"
+                    ),
+                    @ApiResponse(
+                            description = "Internal Server Error",
+                            responseCode = "500"
+                    )
+            }
+    )
     @DeleteMapping("/{id}")
     public ResponseEntity<Response> deleteStudent(@PathVariable UUID id) {
         try {
@@ -106,7 +187,24 @@ public class ProfileController {
         }
     }
 
-    @Operation(summary = "Get a random address from the other service", description = "Get a random address from the other service", tags = {"Profile"})
+    @Operation(summary = "Get a random address from the other service", description = "Get a random address from the " +
+            "other service", tags = {"Profile"},
+            responses = {
+                    @ApiResponse(
+                            description = "Success",
+                            responseCode = "200",
+                            content = @io.swagger.v3.oas.annotations.media.Content(
+                                    mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation =
+                                            Response.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            description = "Internal Server Error",
+                            responseCode = "500"
+                    )
+            }
+    )
     //!This has made so you can try it out easily without needing to implement WebClient anywhere in the code :)
     @GetMapping("/address")
     public ResponseEntity<Response> getAddressFromAddressService() {

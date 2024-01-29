@@ -20,6 +20,8 @@ target/
 *.ipr
 
 ### NetBeans ###
+/profile_service_logs
+/address_service_logs
 /nbproject/private/
 /nbbuild/
 /dist/
